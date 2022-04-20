@@ -9,9 +9,9 @@
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  前端依赖 npm install
+2.  前端启动 npm run dev
+3.  后台jar包 maven管理
 
 #### 使用说明
 
