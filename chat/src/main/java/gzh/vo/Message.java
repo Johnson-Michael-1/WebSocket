@@ -10,6 +10,8 @@ import java.util.List;
  */
 @Data
 public class Message {
+//    时间
+    private String time;
 //    接收方
     private String to;
 //    发送方

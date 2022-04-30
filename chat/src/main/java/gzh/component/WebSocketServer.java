@@ -3,6 +3,7 @@ package gzh.component;
 import com.alibaba.fastjson.JSON;
 import gzh.vo.Message;
 import org.springframework.stereotype.Component;
+import org.thymeleaf.util.StringUtils;
 
 import javax.websocket.*;
 import javax.websocket.server.PathParam;
@@ -19,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * 注意在websocket通信中只能传string
  */
 @Component
-@ServerEndpoint("/socket/{user}")
+@ServerEndpoint("/socket/{username}")
 public class WebSocketServer {
 //    存储当前对象
     public static final Map<String, Session> sessionMap = new ConcurrentHashMap<>();
@@ -31,6 +32,7 @@ public class WebSocketServer {
      */
     @OnOpen
     public void onOpen(Session session, @PathParam("username") String username) {
+        System.out.println("当前用户名=="+username);
         sessionMap.put(username, session);
         // 发送登录人员消息给所有的客户端
         sendAllMessage(setUserList());
@@ -54,8 +56,12 @@ public class WebSocketServer {
     public void onMessage(String message) {
 //        解析消息为java对象
         Message msg = JSON.parseObject(message, Message.class);
-        Session sessionTo = sessionMap.get(msg.getTo());
-        sendMessage(message,sessionTo);
+        if(StringUtils.isEmpty(msg.getTo())){
+            sendAllMessage(JSON.toJSONString(msg));
+        }else{
+            Session sessionTo = sessionMap.get(msg.getTo());
+            sendMessage(message,sessionTo);
+        }
     }
 
     @OnError
