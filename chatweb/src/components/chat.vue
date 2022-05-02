@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <el-row>
+  <div align="center">
+    <el-row style="width: 50%;">
       <!--      用户列表-->
-      <el-col :span="3">
+      <el-col :span="6">
         <el-card style="width: 100%;height: 800px">
-          <div style="text-align: center;font-size: 28px;margin-bottom: 10px">当前聊天室人员</div>
+          <div style="text-align: center;font-size: 28px;margin-bottom: 10px">当前聊天室成员</div>
           <div style="height: 700px;overflow-y:auto;border:1px solid #000000;border-radius: 5px">
             <div v-for="(item,index) in userList" :key="index" style="padding: 10px;margin-top: 10px;font-size: 20px">
               {{item}}
@@ -12,17 +12,11 @@
           </div>
         </el-card>
       </el-col>
-      <!--      音乐播放-->
-      <el-col :span="15">
-        <div style="width: 100%;">
-          播放音乐
-        </div>
-      </el-col>
       <!--      聊天室-->
-      <el-col :span="6">
+      <el-col :span="18">
         <div style="width: 100%;">
           <el-card style="width: 100%;height: 800px">
-            <div style="text-align: center;font-size: 28px;margin-bottom: 10px">一起听歌吧</div>
+            <div style="text-align: center;font-size: 28px;margin-bottom: 10px">一起聊天吧</div>
             <div style="width: 100%;height: 550px;border:1px solid #000000;border-radius: 5px;overflow-y:auto;margin-bottom: 10px">
               <div v-for="(item,index) in msgList" :key="index">
 <!--                {{item.from}}{{item.msg}}{{item.time}}-->
@@ -76,9 +70,7 @@
           console.log("您的浏览器不支持WebSocket");
         } else {
           console.log("您的浏览器支持WebSocket");
-          // 部署时要加上项目的名字，切用tomcat的端口8080，不要用idea启动的8888
-          // let socketUrl = "ws://localhost:8888/socket/" + this.user;//开发时用
-          let socketUrl = "ws://localhost:8080/chat-0.0.1-SNAPSHOT/socket/" + this.user;
+          let socketUrl = "ws://localhost:8888/socket/" + this.user;
           if (socket != null) {
             socket.close();
             socket = null;
@@ -135,7 +127,3 @@
     }
   }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
