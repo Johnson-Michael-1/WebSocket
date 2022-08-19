@@ -15,8 +15,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @Author:gzh
- * @Date: 2022/4/20 20:27
+ * @Author:Johnson
+ * @Date: 2022/8/19 20:27
  * 注意在websocket通信中只能传string
  */
 @Component
